@@ -3,6 +3,7 @@ package com.pizzeria;
 import com.pizzeria.page.CartPage;
 import com.pizzeria.page.MainPage;
 import com.pizzeria.page.PizzaProductPage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.pizzeria.helpers.StringModifier.getPriceValue;
@@ -17,7 +18,11 @@ import static com.pizzeria.util.TestValues.WRONG_QUANTITY_ZERO;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+//https://docs.google.com/spreadsheets/d/1dNcWpkqIyTGLuzRo8HVgDAumuny0wBLsfLXLPaBG0FY/edit?gid=0#gid=0
+@DisplayName("Тестирование добавления продукта в корзину")
 public class TestAddProductToCart extends BaseTest {
+    @DisplayName("Добавление продукта в корзину со страницы продукта")
     @Test
     public void addProductFromProductPage() {
         CartPage cartPage = new MainPage()
@@ -37,6 +42,7 @@ public class TestAddProductToCart extends BaseTest {
         );
     }
 
+    @DisplayName("Добавление продукта в корзину с главной страницы")
     @Test
     public void addProductFromMainPage() {
         CartPage cartPage = new MainPage()
@@ -53,6 +59,7 @@ public class TestAddProductToCart extends BaseTest {
         );
     }
 
+    @DisplayName("Добавление продукта с некорректным количеством (0)")
     @Test
     public void addProductWithWrongQuantity() {
         PizzaProductPage page = new MainPage()
