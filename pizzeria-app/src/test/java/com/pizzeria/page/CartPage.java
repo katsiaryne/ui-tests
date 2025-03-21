@@ -50,7 +50,6 @@ public class CartPage extends BasePage {
         return totalPrice.getText();
     }
 
-
     public int getCartItemSize() {
         refreshCartItemsList();
         return cartItemsList.size();
