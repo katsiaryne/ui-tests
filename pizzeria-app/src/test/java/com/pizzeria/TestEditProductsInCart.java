@@ -8,11 +8,14 @@ import org.testng.asserts.SoftAssert;
 
 import static com.pizzeria.helpers.StringModifier.getPriceValue;
 import static com.pizzeria.util.TestValues.CART_ITEM_SIZE_1;
+import static com.pizzeria.util.TestValues.CATEGORY_DRINKS;
 import static com.pizzeria.util.TestValues.DESERT_TITLE_CART;
 import static com.pizzeria.util.TestValues.DESERT_TITLE_MENU;
+import static com.pizzeria.util.TestValues.DRINK_TITLE_MENU;
 import static com.pizzeria.util.TestValues.ITEM_QUANTITY_1;
 import static com.pizzeria.util.TestValues.PIZZA_TITLE_CART;
 import static com.pizzeria.util.TestValues.PIZZA_TITLE_UPPERCASE;
+import static com.pizzeria.util.TestValues.VALID_COUPON;
 
 //https://docs.google.com/spreadsheets/d/1dNcWpkqIyTGLuzRo8HVgDAumuny0wBLsfLXLPaBG0FY/edit?gid=0#gid=0
 @DisplayName("Тестирование редактирования корзины")
@@ -65,5 +68,22 @@ public class TestEditProductsInCart extends BaseTest {
         cartPage.restoreProduct();
         softAssert.assertEquals(getPriceValue(cartPage.getTotalCartPrice()), "115,00", "Неверная сумма корзины");
         softAssert.assertAll("Проверка удаления и восстановления продукта в корзине");
+    }
+
+    @DisplayName("Ввод купона в корзине")
+    @Test
+    public void addCouponToCart() {
+        SoftAssert softAssert = new SoftAssert();
+        CartPage cartPage = new MainPage()
+                .getHeader()
+                .openMenuPage()
+                .openCategory(CATEGORY_DRINKS)
+                .addToCartProduct(DRINK_TITLE_MENU)
+                .openCartPageAfterAddingProductToCart(DRINK_TITLE_MENU)
+                .setCouponCode(VALID_COUPON)
+                .applyCoupon();
+        softAssert.assertEquals(getPriceValue(cartPage.getTotalCartPrice()), "270,00", "Неверное значение суммы после применения купона");
+        softAssert.assertEquals(cartPage.getCartMessage(), "Coupon code applied successfully.", "Неверное сообщение о применении купона");
+        softAssert.assertAll("Проверка добавления купона в корзине");
     }
 }

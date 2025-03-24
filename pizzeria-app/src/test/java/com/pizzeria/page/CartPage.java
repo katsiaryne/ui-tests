@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +15,10 @@ import java.util.List;
 @Getter
 public class CartPage extends BasePage {
     private final WebDriverWait wait;
+
+    private final By cartItemHeaderLocator = By.xpath("//td[@class='product-name']//a");
+    private final By cartItemDeleteButtonLocator = By.xpath("//td[@class='product-remove']//a");
+
     @FindBy(css = ".order-total bdi")
     private WebElement totalPrice;
     @FindBy(css = ".cart-subtotal bdi")
@@ -51,7 +54,6 @@ public class CartPage extends BasePage {
 
     public CartPage() {
         this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
-        PageFactory.initElements(driver, this);
     }
 
     public String getTotalCartPrice() {
@@ -59,7 +61,7 @@ public class CartPage extends BasePage {
     }
 
     public CartPage deleteProductInCartByName(String productName) {
-        findProductInCart(productName).findElement(By.xpath("//td[@class='product-remove']//a")).click();
+        findProductInCart(productName).findElement(cartItemDeleteButtonLocator).click();
         wait.until(ExpectedConditions.or(
                 ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"),
                 ExpectedConditions.visibilityOf(cartInfo)
@@ -73,14 +75,26 @@ public class CartPage extends BasePage {
         return this;
     }
 
+    public CartPage setCouponCode(String coupon) {
+        couponCodePlaceholder.sendKeys(coupon);
+        return this;
+    }
+
+    public CartPage applyCoupon() {
+        applyCouponButton.click();
+        wait.until(ExpectedConditions.or(
+                        ExpectedConditions.visibilityOf(discountAmount),
+                        ExpectedConditions.visibilityOf(couponErrorMessage)
+                )
+        );
+        return this;
+    }
+
     private WebElement findProductInCart(String productName) {
-        int index = 0;
-        WebElement product = cartItemsList.get(index);
-        while (!productName.equals(product.findElement(By.xpath("//td[@class='product-name']//a")).getText())) {
-            index += 1;
-            product = cartItemsList.get(index);
-        }
-        return product;
+        return cartItemsList.stream()
+                .filter(product -> productName.equals(product.findElement(cartItemHeaderLocator).getText()))
+                .findFirst()
+                .orElseThrow();
     }
 
     public int getCartItemSize() {

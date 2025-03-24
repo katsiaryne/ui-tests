@@ -5,11 +5,18 @@ import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 @Getter
 public class MenuPage extends BasePage {
+    private final WebDriverWait wait;
+
+    private final By entryTitleLocator = By.cssSelector("div h1.entry-title");
+
     @FindBy(css = ".orderby")
     private WebElement shopOrderList;
     @FindBy(xpath = "//option[@value='price-desc']")
@@ -28,6 +35,12 @@ public class MenuPage extends BasePage {
     private List<WebElement> productsPriceList;
     @FindBy(css = ".price-cart a")
     private List<WebElement> addToCartButtonsList;
+    @FindBy(css = ".product-categories li")
+    private List<WebElement> categoriesList;
+
+    public MenuPage() {
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
 
     public MenuPage addToCartProduct(String productName) {
         findProductByName(productName).findElement(By.linkText("В КОРЗИНУ")).click();
@@ -39,13 +52,26 @@ public class MenuPage extends BasePage {
         return new CartPage();
     }
 
+    public MenuPage openCategory(String categoryName) {
+        categoriesList.stream()
+                .filter(category -> categoryName.equals(category.findElement(By.tagName("a")).getText()))
+                .findFirst()
+                .map(category -> category.findElement(By.tagName("a")))
+                .orElseThrow()
+                .click();
+
+        wait.until(ExpectedConditions.textToBe(entryTitleLocator, categoryName.toUpperCase()));
+        return this;
+    }
+
+    public int getProductsListSize() {
+        return productsList.size();
+    }
+
     private WebElement findProductByName(String productName) {
-        int index = 0;
-        WebElement product = productsList.get(index);
-        while (!productName.equals(product.findElement(By.tagName("h3")).getText())) {
-            index += 1;
-            product = productsList.get(index);
-        }
-        return product;
+        return productsList.stream()
+                .filter(product -> productName.equals(product.findElement(By.tagName("h3")).getText()))
+                .findFirst()
+                .orElseThrow();
     }
 }

@@ -86,6 +86,11 @@ public class Header {
         return this;
     }
 
+    public MenuPage openMenuPage() {
+        menuButton.click();
+        return new MenuPage();
+    }
+
     public MenuPage openMenuPageDeserts() {
         menuDesertsButton.click();
         return new MenuPage();
