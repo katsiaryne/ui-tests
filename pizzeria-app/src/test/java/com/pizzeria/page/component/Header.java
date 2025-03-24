@@ -1,13 +1,16 @@
 package com.pizzeria.page.component;
 
 import com.pizzeria.page.CartPage;
+import com.pizzeria.page.MenuPage;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,6 +19,8 @@ import java.time.Duration;
 @Getter
 public class Header {
     private final WebDriver driver;
+    private final Actions actions;
+    private final WebDriverWait wait;
 
     @FindBy(xpath = "//input[@class='search-field'] ")
     private WebElement searchField;
@@ -49,10 +54,12 @@ public class Header {
 
     public Header(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        this.actions = new Actions(driver);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        PageFactory.initElements(driver, this);
     }
 
-    public CartPage openCartPage(String oldValue){
+    public CartPage openCartPage(String oldValue) {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(500))
@@ -68,6 +75,21 @@ public class Header {
             return null;
         });
         return new CartPage();
+    }
+
+    public CartPage openCartFromMenu() {
+        cartMenuButton.click();
+        return new CartPage();
+    }
+
+    public Header openMenuList() {
+        actions.moveToElement(menuButton).perform();
+        return this;
+    }
+
+    public MenuPage openMenuPageDeserts() {
+        menuDesertsButton.click();
+        return new MenuPage();
     }
 
     public String getCartTotal() {

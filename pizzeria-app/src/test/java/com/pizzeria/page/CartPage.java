@@ -36,18 +36,51 @@ public class CartPage extends BasePage {
     private WebElement applyCouponButton;
     @FindBy(css = ".woocommerce-error li")
     private WebElement couponErrorMessage;
-    @FindBy(css = ".woocommerce-message ")
-    private WebElement couponSuccessMessage;
+    @FindBy(css = ".woocommerce-message")
+    private WebElement cartChangesMessage;
     @FindBy(css = ".checkout-button")
     private WebElement checkoutButton;
+    @FindBy(xpath = "//button[@name='update_cart']")
+    private WebElement updateCartButton;
+    @FindBy(css = ".woocommerce form")
+    private WebElement cartForm;
+    @FindBy(css = "p.woocommerce-info")
+    private WebElement cartInfo;
+    @FindBy(css = ".woocommerce-message a")
+    private WebElement restoreProduct;
 
     public CartPage() {
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+        this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
         PageFactory.initElements(driver, this);
     }
 
     public String getTotalCartPrice() {
         return totalPrice.getText();
+    }
+
+    public CartPage deleteProductInCartByName(String productName) {
+        findProductInCart(productName).findElement(By.xpath("//td[@class='product-remove']//a")).click();
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"),
+                ExpectedConditions.visibilityOf(cartInfo)
+        ));
+        return this;
+    }
+
+    public CartPage restoreProduct() {
+        restoreProduct.click();
+        wait.until(ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"));
+        return this;
+    }
+
+    private WebElement findProductInCart(String productName) {
+        int index = 0;
+        WebElement product = cartItemsList.get(index);
+        while (!productName.equals(product.findElement(By.xpath("//td[@class='product-name']//a")).getText())) {
+            index += 1;
+            product = cartItemsList.get(index);
+        }
+        return product;
     }
 
     public int getCartItemSize() {
@@ -57,6 +90,27 @@ public class CartPage extends BasePage {
 
     public String getFirstItemQuantity() {
         return firstCartItemQuantity.getDomProperty("value");
+    }
+
+    public CartPage setFirstItemQuantity(String quantity) {
+        wait.until(ExpectedConditions.visibilityOf(firstCartItemName));
+        firstCartItemQuantity.clear();
+        firstCartItemQuantity.sendKeys(quantity);
+        return this;
+    }
+
+    public CartPage updateCart() {
+        updateCartButton.click();
+        wait.until(ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"));
+        return this;
+    }
+
+    public String getCartMessage() {
+        return cartChangesMessage.getText();
+    }
+
+    public String getCartInfo() {
+        return cartInfo.getText();
     }
 
     private void refreshCartItemsList() {
