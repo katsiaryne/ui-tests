@@ -3,7 +3,6 @@ package com.pizzeria.page;
 import com.pizzeria.page.base.BasePage;
 import lombok.Getter;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -12,9 +11,7 @@ import java.util.List;
 import static com.pizzeria.config.ConfigProvider.URL;
 
 @Getter
-public class MainPage extends BasePage {
-    private final Actions actions;
-
+public class MainPage extends BasePage<MainPage> {
     @FindBy(css = "#product1 .slick-track .slick-active")
     private List<WebElement> visiblePizzaItemsCarousel;
     @FindBy(css = "#product1 .slick-active h3")
@@ -45,12 +42,9 @@ public class MainPage extends BasePage {
     private WebElement carouselDrinksPrevButton;
     @FindBy(xpath = "//aside[@id='accesspress_store_product-7']//a[@class='slick-next']")
     private WebElement carouselDrinksNextButton;
-    @FindBy(id = "ak-top")
-    private WebElement toTopButton;
 
     public MainPage() {
         driver.get(URL);
-        this.actions = new Actions(driver);
     }
 
     public MainPage findPizzaInCarousel(String name) {
@@ -63,7 +57,7 @@ public class MainPage extends BasePage {
 
     public PizzaProductPage clickFirstVisiblePizzaImage() {
         wait.until(ExpectedConditions.visibilityOf(firstPizzaItemInCarousel)).click();
-        return new PizzaProductPage(driver);
+        return new PizzaProductPage();
     }
 
     public MainPage clickAddToCartFirstVisiblePizza() {

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 @Getter
-public class MenuPage extends BasePage {
+public class MenuPage extends BasePage<MenuPage> {
     private final By entryTitleLocator = By.cssSelector("div h1.entry-title");
 
     @FindBy(css = ".orderby")

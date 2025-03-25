@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-public class CheckoutPage extends BasePage {
+public class CheckoutPage extends BasePage<CheckoutPage> {
     @FindBy(css = ".cart-subtotal bdi")
     private WebElement subTotalPrice;
     @FindBy(css = ".order-total bdi")

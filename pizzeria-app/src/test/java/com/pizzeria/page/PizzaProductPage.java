@@ -2,7 +2,6 @@ package com.pizzeria.page;
 
 import com.pizzeria.page.base.BaseProductPage;
 import lombok.Getter;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,10 +11,6 @@ public class PizzaProductPage extends BaseProductPage<PizzaProductPage> {
     private WebElement boardList;
     @FindBy(xpath = "//option[@value='55.00']")
     private WebElement boardValue;
-
-    public PizzaProductPage(WebDriver driver) {
-        super(driver);
-    }
 
     public PizzaProductPage openPizzaBoardList() {
         boardList.click();
