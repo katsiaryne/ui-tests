@@ -6,15 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 @Getter
 public class MenuPage extends BasePage {
-    private final WebDriverWait wait;
-
     private final By entryTitleLocator = By.cssSelector("div h1.entry-title");
 
     @FindBy(css = ".orderby")
@@ -37,10 +33,6 @@ public class MenuPage extends BasePage {
     private List<WebElement> addToCartButtonsList;
     @FindBy(css = ".product-categories li")
     private List<WebElement> categoriesList;
-
-    public MenuPage() {
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    }
 
     public MenuPage addToCartProduct(String productName) {
         findProductByName(productName).findElement(By.linkText("В КОРЗИНУ")).click();

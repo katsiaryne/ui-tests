@@ -97,7 +97,6 @@ public class Header {
     }
 
     public String getCartTotal() {
-        WebElement cartButton = driver.findElement(cartButtonLocator);
-        return cartButton.getText();
+        return driver.findElement(cartButtonLocator).getText();
     }
 }

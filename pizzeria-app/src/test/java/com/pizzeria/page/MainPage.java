@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 import static com.pizzeria.config.ConfigProvider.URL;
@@ -16,7 +14,6 @@ import static com.pizzeria.config.ConfigProvider.URL;
 @Getter
 public class MainPage extends BasePage {
     private final Actions actions;
-    private final WebDriverWait wait;
 
     @FindBy(css = "#product1 .slick-track .slick-active")
     private List<WebElement> visiblePizzaItemsCarousel;
@@ -54,7 +51,6 @@ public class MainPage extends BasePage {
     public MainPage() {
         driver.get(URL);
         this.actions = new Actions(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
     }
 
     public MainPage findPizzaInCarousel(String name) {

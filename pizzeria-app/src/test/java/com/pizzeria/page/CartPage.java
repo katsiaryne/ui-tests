@@ -7,15 +7,11 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 @Getter
 public class CartPage extends BasePage {
-    private final WebDriverWait wait;
-
     private final By cartItemHeaderLocator = By.xpath("//td[@class='product-name']//a");
     private final By cartItemDeleteButtonLocator = By.xpath("//td[@class='product-remove']//a");
 
@@ -51,10 +47,6 @@ public class CartPage extends BasePage {
     private WebElement cartInfo;
     @FindBy(css = ".woocommerce-message a")
     private WebElement restoreProduct;
-
-    public CartPage() {
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(3000));
-    }
 
     public String getTotalCartPrice() {
         return totalPrice.getText();
