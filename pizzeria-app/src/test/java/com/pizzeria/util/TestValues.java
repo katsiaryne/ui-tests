@@ -9,4 +9,9 @@ public final class TestValues {
     public static final String WRONG_QUANTITY_ZERO = "0";
     public static final int CART_ITEM_SIZE_1 = 1;
     public static final String ITEM_QUANTITY_1 = "1";
+    public static final String DESERT_TITLE_CART = "Десерт \"Булочка с корицей\"";
+    public static final String DESERT_TITLE_MENU = "Десерт «Булочка с корицей»";
+    public static final String CATEGORY_DRINKS = "Напитки";
+    public static final String DRINK_TITLE_MENU = "Айс латте";
+    public static final String VALID_COUPON = "GIVEMEHALYAVA";
 }

@@ -16,4 +16,14 @@ public class PizzaProductPage extends BaseProductPage<PizzaProductPage> {
     public PizzaProductPage(WebDriver driver) {
         super(driver);
     }
+
+    public PizzaProductPage openPizzaBoardList() {
+        boardList.click();
+        return this;
+    }
+
+    public PizzaProductPage setBoard() {
+        boardValue.click();
+        return this;
+    }
 }

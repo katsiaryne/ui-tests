@@ -21,7 +21,6 @@ public class EditAccountPage extends BasePage {
 
     public EditAccountPage() {
         this.navigation = new AccountPageNavigation(driver);
-        PageFactory.initElements(driver, this);
     }
 
     public EditAccountPage uploadNewFile() {

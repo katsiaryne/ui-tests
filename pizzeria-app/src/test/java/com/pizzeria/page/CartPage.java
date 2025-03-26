@@ -6,16 +6,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 @Getter
 public class CartPage extends BasePage {
-    private final WebDriverWait wait;
+    private final By cartItemHeaderLocator = By.xpath("//td[@class='product-name']//a");
+    private final By cartItemDeleteButtonLocator = By.xpath("//td[@class='product-remove']//a");
+
     @FindBy(css = ".order-total bdi")
     private WebElement totalPrice;
     @FindBy(css = ".cart-subtotal bdi")
@@ -36,18 +35,58 @@ public class CartPage extends BasePage {
     private WebElement applyCouponButton;
     @FindBy(css = ".woocommerce-error li")
     private WebElement couponErrorMessage;
-    @FindBy(css = ".woocommerce-message ")
-    private WebElement couponSuccessMessage;
+    @FindBy(css = ".woocommerce-message")
+    private WebElement cartChangesMessage;
     @FindBy(css = ".checkout-button")
     private WebElement checkoutButton;
-
-    public CartPage() {
-        this.wait = new WebDriverWait(driver, Duration.ofMillis(1000));
-        PageFactory.initElements(driver, this);
-    }
+    @FindBy(xpath = "//button[@name='update_cart']")
+    private WebElement updateCartButton;
+    @FindBy(css = ".woocommerce form")
+    private WebElement cartForm;
+    @FindBy(css = "p.woocommerce-info")
+    private WebElement cartInfo;
+    @FindBy(css = ".woocommerce-message a")
+    private WebElement restoreProduct;
 
     public String getTotalCartPrice() {
         return totalPrice.getText();
+    }
+
+    public CartPage deleteProductInCartByName(String productName) {
+        findProductInCart(productName).findElement(cartItemDeleteButtonLocator).click();
+        wait.until(ExpectedConditions.or(
+                ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"),
+                ExpectedConditions.visibilityOf(cartInfo)
+        ));
+        return this;
+    }
+
+    public CartPage restoreProduct() {
+        restoreProduct.click();
+        wait.until(ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"));
+        return this;
+    }
+
+    public CartPage setCouponCode(String coupon) {
+        couponCodePlaceholder.sendKeys(coupon);
+        return this;
+    }
+
+    public CartPage applyCoupon() {
+        applyCouponButton.click();
+        wait.until(ExpectedConditions.or(
+                        ExpectedConditions.visibilityOf(discountAmount),
+                        ExpectedConditions.visibilityOf(couponErrorMessage)
+                )
+        );
+        return this;
+    }
+
+    private WebElement findProductInCart(String productName) {
+        return cartItemsList.stream()
+                .filter(product -> productName.equals(product.findElement(cartItemHeaderLocator).getText()))
+                .findFirst()
+                .orElseThrow();
     }
 
     public int getCartItemSize() {
@@ -57,6 +96,27 @@ public class CartPage extends BasePage {
 
     public String getFirstItemQuantity() {
         return firstCartItemQuantity.getDomProperty("value");
+    }
+
+    public CartPage setFirstItemQuantity(String quantity) {
+        wait.until(ExpectedConditions.visibilityOf(firstCartItemName));
+        firstCartItemQuantity.clear();
+        firstCartItemQuantity.sendKeys(quantity);
+        return this;
+    }
+
+    public CartPage updateCart() {
+        updateCartButton.click();
+        wait.until(ExpectedConditions.domAttributeToBe(cartForm, "class", "woocommerce-cart-form"));
+        return this;
+    }
+
+    public String getCartMessage() {
+        return cartChangesMessage.getText();
+    }
+
+    public String getCartInfo() {
+        return cartInfo.getText();
     }
 
     private void refreshCartItemsList() {

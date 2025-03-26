@@ -34,7 +34,7 @@ public class TestAddProductToCart extends BaseTest {
 
         assertAll(
                 "Проверка содержимого корзины после добавления со страницы продукта",
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма коризны в заголовке страницы"),
+                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма корзины в заголовке страницы"),
                 () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPrice()), "Неверная сумма корзины на страницу Корзина"),
                 () -> assertEquals(CART_ITEM_SIZE_1, cartPage.getCartItemSize(), "Неверное число уникальных эелементов в корзине"),
                 () -> assertEquals(PIZZA_TITLE_CART, cartPage.getFirstCartItemName().getText(), "Неверный продукт в корзине"),
@@ -51,7 +51,7 @@ public class TestAddProductToCart extends BaseTest {
                 .clickCartButtonOnFirstVisiblePizza();
         assertAll(
                 "Проверка содержимого корзины после добавления с главной страницы",
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма коризны в заголовке страницы"),
+                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма корзины в заголовке страницы"),
                 () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPrice()), "Неверная сумма корзины на страницу Корзина"),
                 () -> assertEquals(CART_ITEM_SIZE_1, cartPage.getCartItemSize(), "Неверное число уникальных эелементов в корзине"),
                 () -> assertEquals(PIZZA_TITLE_CART, cartPage.getFirstCartItemName().getText(), "Неверный продукт в корзине"),
