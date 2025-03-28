@@ -57,7 +57,7 @@ public class TestEditProductsInCart extends BaseTest {
         CartPage cartPage = new MainPage()
                 .getHeader()
                 .openMenuList()
-                .openMenuPageDeserts()
+                .openMenuPage("ДЕСЕРТЫ")
                 .addToCartProduct(DESERT_TITLE_MENU)
                 .openCartPageAfterAddingProductToCart(DESERT_TITLE_MENU)
                 .deleteProductInCartByName(DESERT_TITLE_CART);

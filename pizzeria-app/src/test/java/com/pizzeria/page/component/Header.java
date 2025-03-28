@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 @Getter
 public class Header {
@@ -30,12 +31,8 @@ public class Header {
     private WebElement mainButton;
     @FindBy(xpath = "//li[@id='menu-item-389']//a")
     private WebElement menuButton;
-    @FindBy(xpath = "//li[@id='menu-item-390']//a")
-    private WebElement menuPizzasButton;
-    @FindBy(xpath = "//li[@id='menu-item-391']//a")
-    private WebElement menuDesertsButton;
-    @FindBy(xpath = "//li[@id='menu-item-393']//a")
-    private WebElement menuDrinksButton;
+    @FindBy(css = ".sub-menu  li a")
+    private List<WebElement> menuCategories;
     @FindBy(xpath = "//li[@id='menu-item-381']//a")
     private WebElement deliveryButton;
     @FindBy(xpath = "//li[@id='menu-item-396']//a")
@@ -81,6 +78,11 @@ public class Header {
         return new CartPage();
     }
 
+    public MenuPage openMenu() {
+        menuButton.click();
+        return new MenuPage();
+    }
+
     public Header openMenuList() {
         actions.moveToElement(menuButton).perform();
         return this;
@@ -91,8 +93,12 @@ public class Header {
         return new MenuPage();
     }
 
-    public MenuPage openMenuPageDeserts() {
-        menuDesertsButton.click();
+    public MenuPage openMenuPage(String categoryName) {
+        menuCategories.stream()
+                .filter(category -> categoryName.equals(category.getText()))
+                .findFirst()
+                .orElseThrow()
+                .click();
         return new MenuPage();
     }
 
