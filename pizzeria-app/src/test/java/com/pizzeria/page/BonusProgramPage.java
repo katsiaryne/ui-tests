@@ -32,7 +32,7 @@ public class BonusProgramPage extends BasePage<BonusProgramPage> {
     public BonusProgramPage activateBonusCard() {
         submitDataButton.click();
         wait.until(ExpectedConditions.or(
-                ExpectedConditions.visibilityOf(formSuccessMessage),
+                ExpectedConditions.alertIsPresent(),
                 ExpectedConditions.visibilityOf(formErrorMessages)
         ));
         return this;
