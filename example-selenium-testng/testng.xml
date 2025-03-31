@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/aqa/ui-tests/example-selenium-testng">
+        <classes>
+            <class name="org.example.test.HelloPageTest">
+                <methods>
+                    <include name="checkDisplayingCorrectMessage"/>
+                </methods>
+            </class>
+            <class name="org.example.test.ShopPageTest">
+                <methods>
+                    <include name="checkDisplayingSuccessMessage"/>
+                    <include name="checkDisplayingErrorMessage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

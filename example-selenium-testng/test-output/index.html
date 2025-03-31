@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports1.css" rel="stylesheet" id="ultra" />
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" id="retro" disabled="false"/>
+    <script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" panel-name="suite-All_Test_Suite" class="navigator-link">
+              <span class="suite-name border-passed">All Test Suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" panel-name="test-xml-All_Test_Suite" class="navigator-link ">
+                    <span>D:\aqa\ui-tests\example-selenium-testng\testng.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="testlist-All_Test_Suite" class="navigator-link ">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="group-All_Test_Suite" class="navigator-link ">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="times-All_Test_Suite" class="navigator-link ">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="reporter-All_Test_Suite" class="navigator-link ">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="ignored-methods-All_Test_Suite" class="navigator-link ">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" panel-name="chronological-All_Test_Suite" class="navigator-link ">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">8 methods,   8 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-All_Test_Suite" class="hide-methods passed suite-All_Test_Suite"> (hide)</a> <!-- hide-methods passed suite-All_Test_Suite -->
+                      <a href="#" panel-name="suite-All_Test_Suite" class="show-methods passed suite-All_Test_Suite"> (show)</a> <!-- show-methods passed suite-All_Test_Suite -->
+                    </span>
+                    <div class="method-list-content passed suite-All_Test_Suite">
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.HelloPageTest" class="method navigator-link" hash-for-method="checkDisplayingCorrectMessage(, Привет, !)">checkDisplayingCorrectMessage(, Привет, !)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.HelloPageTest" class="method navigator-link" hash-for-method="checkDisplayingCorrectMessage(Name, Привет, Name!)">checkDisplayingCorrectMessage(Name, Привет, Name!)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingErrorMessage(-34)">checkDisplayingErrorMessage(-34)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingErrorMessage(45)">checkDisplayingErrorMessage(45)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingErrorMessage(33)">checkDisplayingErrorMessage(33)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingSuccessMessage(44)">checkDisplayingSuccessMessage(44)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingSuccessMessage(39)">checkDisplayingSuccessMessage(39)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-All_Test_Suite" title="org.example.test.ShopPageTest" class="method navigator-link" hash-for-method="checkDisplayingSuccessMessage(34)">checkDisplayingSuccessMessage(34)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-All_Test_Suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-All_Test_Suite" class="panel All_Test_Suite">
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.example.test.ShopPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingErrorMessage(-34)">
+                  </a> <!-- checkDisplayingErrorMessage(-34) -->
+                  <span class="method-name">checkDisplayingErrorMessage</span>
+                  <span class="parameters">(-34)</span>
+                  <em>
+(Проверяем генерацию неуспешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingErrorMessage(45)">
+                  </a> <!-- checkDisplayingErrorMessage(45) -->
+                  <span class="method-name">checkDisplayingErrorMessage</span>
+                  <span class="parameters">(45)</span>
+                  <em>
+(Проверяем генерацию неуспешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingErrorMessage(33)">
+                  </a> <!-- checkDisplayingErrorMessage(33) -->
+                  <span class="method-name">checkDisplayingErrorMessage</span>
+                  <span class="parameters">(33)</span>
+                  <em>
+(Проверяем генерацию неуспешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingSuccessMessage(44)">
+                  </a> <!-- checkDisplayingSuccessMessage(44) -->
+                  <span class="method-name">checkDisplayingSuccessMessage</span>
+                  <span class="parameters">(44)</span>
+                  <em>
+(Проверяем генерацию успешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingSuccessMessage(39)">
+                  </a> <!-- checkDisplayingSuccessMessage(39) -->
+                  <span class="method-name">checkDisplayingSuccessMessage</span>
+                  <span class="parameters">(39)</span>
+                  <em>
+(Проверяем генерацию успешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingSuccessMessage(34)">
+                  </a> <!-- checkDisplayingSuccessMessage(34) -->
+                  <span class="method-name">checkDisplayingSuccessMessage</span>
+                  <span class="parameters">(34)</span>
+                  <em>
+(Проверяем генерацию успешного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+          <div class="suite-All_Test_Suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">org.example.test.HelloPageTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingCorrectMessage(, Привет, !)">
+                  </a> <!-- checkDisplayingCorrectMessage(, Привет, !) -->
+                  <span class="method-name">checkDisplayingCorrectMessage</span>
+                  <span class="parameters">(,Привет, !)</span>
+                  <em>
+(Проверяем генерацию информационного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="checkDisplayingCorrectMessage(Name, Привет, Name!)">
+                  </a> <!-- checkDisplayingCorrectMessage(Name, Привет, Name!) -->
+                  <span class="method-name">checkDisplayingCorrectMessage</span>
+                  <span class="parameters">(Name,Привет, Name!)</span>
+                  <em>
+(Проверяем генерацию информационного сообщения)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-All_Test_Suite-class-passed -->
+        </div> <!-- panel All_Test_Suite -->
+        <div panel-name="test-xml-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">D:\aqa\ui-tests\example-selenium-testng\testng.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;All Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;D:/aqa/ui-tests/example-selenium-testng&quot; verbose=&quot;2&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;org.example.test.HelloPageTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;checkDisplayingCorrectMessage&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- org.example.test.HelloPageTest --&gt;
+      &lt;class name=&quot;org.example.test.ShopPageTest&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;checkDisplayingSuccessMessage&quot;/&gt;
+          &lt;include name=&quot;checkDisplayingErrorMessage&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- org.example.test.ShopPageTest --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- D:/aqa/ui-tests/example-selenium-testng --&gt;
+&lt;/suite&gt; &lt;!-- All Test Suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">D:/aqa/ui-tests/example-selenium-testng (2 classes)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_All_Test_Suite');
+function tableData_All_Test_Suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(8);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'checkDisplayingSuccessMessage')
+data.setCell(0, 2, 'org.example.test.ShopPageTest')
+data.setCell(0, 3, 1136);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'checkDisplayingCorrectMessage')
+data.setCell(1, 2, 'org.example.test.HelloPageTest')
+data.setCell(1, 3, 1035);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'checkDisplayingSuccessMessage')
+data.setCell(2, 2, 'org.example.test.ShopPageTest')
+data.setCell(2, 3, 212);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'checkDisplayingErrorMessage')
+data.setCell(3, 2, 'org.example.test.ShopPageTest')
+data.setCell(3, 3, 186);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'checkDisplayingErrorMessage')
+data.setCell(4, 2, 'org.example.test.ShopPageTest')
+data.setCell(4, 3, 179);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'checkDisplayingErrorMessage')
+data.setCell(5, 2, 'org.example.test.ShopPageTest')
+data.setCell(5, 3, 177);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'checkDisplayingSuccessMessage')
+data.setCell(6, 2, 'org.example.test.ShopPageTest')
+data.setCell(6, 3, 173);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'checkDisplayingCorrectMessage')
+data.setCell(7, 2, 'org.example.test.HelloPageTest')
+data.setCell(7, 3, 135);
+window.suiteTableData['All_Test_Suite']= { tableData: data, tableDiv: 'times-div-All_Test_Suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 3 seconds</span>
+              <div id="times-div-All_Test_Suite">
+              </div> <!-- times-div-All_Test_Suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for All Test Suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-All_Test_Suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.example.test.HelloPageTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingCorrectMessage(, Привет, !)</span>
+                <span class="method-start">4065 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingCorrectMessage(Name, Привет, Name!)</span>
+                <span class="method-start">5103 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">5239 ms</span>
+              </div> <!-- configuration-class after -->
+            </div> <!-- chronological-class -->
+            <div class="chronological-class">
+              <div class="chronological-class-name">org.example.test.ShopPageTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUp</span>
+                <span class="method-start">5582 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingSuccessMessage(34)</span>
+                <span class="method-start">9289 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingSuccessMessage(44)</span>
+                <span class="method-start">10425 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingSuccessMessage(39)</span>
+                <span class="method-start">10637 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingErrorMessage(33)</span>
+                <span class="method-start">10811 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingErrorMessage(45)</span>
+                <span class="method-start">10990 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">checkDisplayingErrorMessage(-34)</span>
+                <span class="method-start">11177 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-class after">
+                <span class="method-name">tearDown</span>
+                <span class="method-start">11354 ms</span>
+              </div> <!-- configuration-class after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+<script type="text/javascript" src="testng-reports2.js"></script>
+</html>
