@@ -5,14 +5,14 @@ import com.pizzeria.page.MainPage;
 import com.pizzeria.page.PizzaProductPage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import static com.pizzeria.helpers.StringModifier.getPriceValue;
+import static com.pizzeria.util.TestCartValidation.checkCart;
 import static com.pizzeria.util.TestValues.CART_HEADER_START_TOTAL_PRICE;
 import static com.pizzeria.util.TestValues.CART_ITEM_SIZE_1;
 import static com.pizzeria.util.TestValues.CART_START_TOTAL_PRICE;
 import static com.pizzeria.util.TestValues.ITEM_QUANTITY_1;
-import static com.pizzeria.util.TestValues.PIZZA_PRICE;
-import static com.pizzeria.util.TestValues.PIZZA_TITLE_CART;
 import static com.pizzeria.util.TestValues.PIZZA_TITLE_UPPERCASE;
 import static com.pizzeria.util.TestValues.WRONG_QUANTITY_ZERO;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -23,41 +23,38 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("Тестирование добавления продукта в корзину")
 public class TestAddProductToCart extends BaseTest {
     @DisplayName("Добавление продукта в корзину со страницы продукта")
-    @Test
-    public void addProductFromProductPage() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "'ПИЦЦА «РАЙ»', 'Пицца \"Рай\"', '515,00'",
+            "'ПИЦЦА «4 В 1»', 'Пицца \"4 в 1\"', '435,00'",
+            "'ПИЦЦА «ПЕППЕРОНИ»', 'Пицца \"Пепперони\"', '485,00'"
+    })
+    public void addProductFromProductPage(String productNameUppercase, String productName, String productPrice) {
         CartPage cartPage = new MainPage()
-                .findPizzaInCarousel(PIZZA_TITLE_UPPERCASE)
+                .findPizzaInCarousel(productNameUppercase)
                 .clickFirstVisiblePizzaImage()
                 .addProductToCart()
                 .getHeader()
                 .openCartPage(CART_HEADER_START_TOTAL_PRICE);
 
-        assertAll(
-                "Проверка содержимого корзины после добавления со страницы продукта",
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма корзины в заголовке страницы"),
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPrice()), "Неверная сумма корзины на страницу Корзина"),
-                () -> assertEquals(CART_ITEM_SIZE_1, cartPage.getCartItemSize(), "Неверное число уникальных эелементов в корзине"),
-                () -> assertEquals(PIZZA_TITLE_CART, cartPage.getFirstCartItemName().getText(), "Неверный продукт в корзине"),
-                () -> assertEquals(ITEM_QUANTITY_1, cartPage.getFirstItemQuantity(), "Неверное колиство продукта в корзине")
-        );
+        checkCart(cartPage, productPrice, CART_ITEM_SIZE_1, productName, ITEM_QUANTITY_1);
     }
 
     @DisplayName("Добавление продукта в корзину с главной страницы")
-    @Test
-    public void addProductFromMainPage() {
+    @ParameterizedTest
+    @CsvSource(value = {
+            "'ПИЦЦА «ВЕТЧИНА И ГРИБЫ»', 'Пицца \"Ветчина и грибы\"', '450,00'",
+            "'ПИЦЦА «КАК У БАБУШКИ»', 'Пицца \"Как у бабушки\"', '480,00'"
+    })
+    public void addProductFromMainPage(String productNameUppercase, String productName, String productPrice) {
         CartPage cartPage = new MainPage()
-                .findPizzaInCarousel(PIZZA_TITLE_UPPERCASE)
+                .findPizzaInCarousel(productNameUppercase)
                 .clickAddToCartFirstVisiblePizza()
                 .clickCartButtonOnFirstVisiblePizza();
-        assertAll(
-                "Проверка содержимого корзины после добавления с главной страницы",
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPriceFromHeader()), "Неверная сумма корзины в заголовке страницы"),
-                () -> assertEquals(PIZZA_PRICE, getPriceValue(cartPage.getTotalCartPrice()), "Неверная сумма корзины на страницу Корзина"),
-                () -> assertEquals(CART_ITEM_SIZE_1, cartPage.getCartItemSize(), "Неверное число уникальных эелементов в корзине"),
-                () -> assertEquals(PIZZA_TITLE_CART, cartPage.getFirstCartItemName().getText(), "Неверный продукт в корзине"),
-                () -> assertEquals(ITEM_QUANTITY_1, cartPage.getFirstItemQuantity(), "Неверное колиство продукта в корзине")
-        );
+        checkCart(cartPage, productPrice, CART_ITEM_SIZE_1, productName, ITEM_QUANTITY_1);
     }
+
+
 
     @DisplayName("Добавление продукта с некорректным количеством (0)")
     @Test
