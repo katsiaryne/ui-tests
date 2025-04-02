@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-public class AccountInfoPage extends BasePage {
+public class AccountInfoPage extends BasePage<AccountInfoPage> {
     private final AccountPageNavigation navigation;
 
     @FindBy(css = ".woocommerce-message")

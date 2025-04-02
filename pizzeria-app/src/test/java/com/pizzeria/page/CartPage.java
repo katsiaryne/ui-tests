@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
 
 @Getter
-public class CartPage extends BasePage {
+public class CartPage extends BasePage<CartPage> {
     private final By cartItemHeaderLocator = By.xpath("//td[@class='product-name']//a");
     private final By cartItemDeleteButtonLocator = By.xpath("//td[@class='product-remove']//a");
 
