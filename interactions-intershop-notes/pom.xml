@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pizzeria</groupId>
-    <artifactId>pizzeria-app</artifactId>
+    <groupId>com.interact</groupId>
+    <artifactId>interactions-intershop-notes</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -19,12 +19,8 @@
         <config.version>1.4.3</config.version>
         <lombok.version>1.18.36</lombok.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
-        <testng.version>7.11.0</testng.version>
         <junit-jupiter-params.version>5.12.1</junit-jupiter-params.version>
-        <hamcrest.version>3.0</hamcrest.version>
-
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -49,12 +45,6 @@
             <version>${junit-platform-launcher.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter-params.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
             <version>${config.version}</version>
@@ -66,26 +56,13 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
             <version>${junit-jupiter-params.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>${hamcrest.version}</version>
-            <scope>test</scope>
-        </dependency>
 
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -104,4 +81,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

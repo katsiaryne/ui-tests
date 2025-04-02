@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.pizzeria</groupId>
-    <artifactId>pizzeria-app</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>example-selenium-testng</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,16 +13,11 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium-java.version>4.29.0</selenium-java.version>
-        <webdrivermanager.version>5.9.3</webdrivermanager.version>
-        <junit-platform-launcher.version>1.12.1</junit-platform-launcher.version>
-        <junit-jupiter-api.version>5.12.1</junit-jupiter-api.version>
-        <config.version>1.4.3</config.version>
+        <webdrivermanager.version>6.0.0</webdrivermanager.version>
         <lombok.version>1.18.36</lombok.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
         <testng.version>7.11.0</testng.version>
-        <junit-jupiter-params.version>5.12.1</junit-jupiter-params.version>
-        <hamcrest.version>3.0</hamcrest.version>
-
+        <config.version>1.4.3</config.version>
     </properties>
 
     <dependencies>
@@ -37,29 +32,6 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-api.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <scope>test</scope>
-            <version>${junit-platform-launcher.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter-params.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.typesafe</groupId>
-            <artifactId>config</artifactId>
-            <version>${config.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
@@ -72,16 +44,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit-jupiter-params.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest</artifactId>
-            <version>${hamcrest.version}</version>
-            <scope>test</scope>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>${config.version}</version>
         </dependency>
 
     </dependencies>
