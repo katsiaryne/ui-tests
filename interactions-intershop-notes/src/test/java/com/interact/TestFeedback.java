@@ -53,9 +53,9 @@ public class TestFeedback extends BaseTest {
 
         assertAll(
                 "Проверка ошибок страницы формы",
-                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getDateMessage(), dateError)),
-                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getTimeMessage(), timeError)),
-                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getPhoneMessage(), phoneError))
+                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getDateMessage(), dateError), "Ошибка формы не произошла"),
+                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getTimeMessage(), timeError), "Ошибка формы не произошла"),
+                () -> assertTrue(assertElementIsDisplayedAndHaveText(page.getPhoneMessage(), phoneError), "Ошибка формы не произошла")
         );
     }
 }
