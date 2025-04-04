@@ -50,19 +50,19 @@ public class MainPageFeedback extends BasePage<MainPageFeedback> {
     }
 
     public MainPageFeedback setTimeFrom(String timeFrom) {
-        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'block'", selectNameFromTime);
-        Select selectFrom = new Select(timeFromSelect);
-        selectFrom.selectByValue(timeFrom);
-        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'none'", selectNameFromTime);
+        return setTime(timeFromSelect, selectNameFromTime, timeFrom);
+    }
+
+    private MainPageFeedback setTime(WebElement element, String selectName, String time) {
+        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'block'", selectName);
+        Select selectTo = new Select(element);
+        selectTo.selectByValue(time);
+        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'none'", selectName);
         return this;
     }
 
     public MainPageFeedback setTimeTo(String timeTo) {
-        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'block'", selectNameToTime);
-        Select selectTo = new Select(timeToSelect);
-        selectTo.selectByValue(timeTo);
-        js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'none'", selectNameToTime);
-        return this;
+        return setTime(timeToSelect, selectNameToTime, timeTo);
     }
 
     public MainPageFeedback setPhone(String phone) {
