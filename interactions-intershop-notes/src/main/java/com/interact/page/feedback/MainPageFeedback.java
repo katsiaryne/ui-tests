@@ -3,7 +3,6 @@ package com.interact.page.feedback;
 import com.interact.page.BasePage;
 import lombok.Getter;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -46,12 +45,7 @@ public class MainPageFeedback extends BasePage<MainPageFeedback> {
 
     public MainPageFeedback submitForm() {
         submitFormButton.click();
-        //   try{
-        wait.until(ExpectedConditions.or(
-                ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector(".page__content"))));
-        //   ExpectedConditions.elementToBeClickable(submitFormButton)
-        //     ));
-        //} catch (TimeoutException e){};
+        wait.until(ExpectedConditions.visibilityOfElementLocated(new By.ByCssSelector(".page__content")));
         return this;
     }
 
@@ -61,11 +55,6 @@ public class MainPageFeedback extends BasePage<MainPageFeedback> {
         selectFrom.selectByValue(timeFrom);
         js.executeScript("document.getElementsByName(arguments[0])[0].style.display = 'none'", selectNameFromTime);
         return this;
-    }
-
-    public WebElement getSuccessfulMessage() {
-        // wait.until(ExpectedConditions.visibilityOf(successfulMessage));
-        return successfulMessage;
     }
 
     public MainPageFeedback setTimeTo(String timeTo) {
