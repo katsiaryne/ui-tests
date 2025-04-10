@@ -16,10 +16,12 @@ public class MainPageContentFrame extends BaseMainPage<MainPageContentFrame> {
     private final SelenideElement emailField = $(By.name("email"));
     private final SelenideElement formError = $(".form-error");
     private final SelenideElement resultText = $(".result-text");
-    private final SelenideElement resultEmailText = $("#resultTextBlock pre");
+    private final SelenideElement resultEmail = $("#resultTextBlock pre");
     private final SelenideElement anotherEmailButton = $("#anotherEmail");
+    private final SelenideElement header = $(".header");
+    private final SelenideElement form = $(".main-form");
 
-    private MainPageContentFrame fillEmailField(String email) {
+    public MainPageContentFrame setEmail(String email) {
         emailField.should(clickable).click();
         emailField.should(interactable).sendKeys(email);
         return this;
@@ -35,7 +37,7 @@ public class MainPageContentFrame extends BaseMainPage<MainPageContentFrame> {
         return this;
     }
 
-    public MainPageContentFrame tryAnotherEmailButton() {
+    public MainPageContentFrame clickTryAnotherEmail() {
         anotherEmailButton.should(clickable).click();
         return this;
     }
