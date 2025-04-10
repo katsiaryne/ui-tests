@@ -8,7 +8,9 @@ import java.io.File;
 
 import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 @Getter
 public class ProfilePage {
@@ -32,9 +34,13 @@ public class ProfilePage {
     private SelenideElement facebookField;
     @FindBy(className = "button__submit")
     private SelenideElement submitFormButton;
-    @FindBy(xpath = "//input[@id='uploadInput']")
-    private SelenideElement uploadFileInput;
 
+    public ProfilePage fillPhoneNumber(String phone) {
+        phoneField.click();
+        phoneField.clear();
+        phoneField.sendKeys(phone);
+        return this;
+    }
 
     public ProfilePage uploadAvatar() {
         executeJavaScript("document.getElementsByName(\"file\")[0].style.setProperty(\"width\",\"200px\");" +
@@ -46,22 +52,15 @@ public class ProfilePage {
     }
 
     public ProfilePage selectCommunication(String[] communications) {
-        for (String communication : communications) {
-            $$(".ch_3 input").find(value(communication)).parent().click();
-        }
-        return this;
+        return selectCheckbox(".ch_3 input", communications);
     }
 
     public ProfilePage selectNativeLanguage(String[] languages) {
-        for (String language : languages) {
-            $$(".ch_2 input").find(value(language)).parent().click();
-        }
-        return this;
+        return selectCheckbox(".ch_2 input", languages);
     }
 
-    public ProfilePage selectTeachLanguage(String language) {
-        $(".ch_1 input").shouldHave(value(language)).parent().click();
-        return this;
+    public ProfilePage selectTeachLanguage(String[] languages) {
+        return selectCheckbox(".ch_1 input", languages);
     }
 
     public ProfilePage selectAge(String year) {
@@ -71,6 +70,13 @@ public class ProfilePage {
 
     public ProfilePage selectLanguage(String language) {
         $(".select_language").selectOptionByValue(language);
+        return this;
+    }
+
+    private ProfilePage selectCheckbox(String checkboxSelector, String[] options) {
+        for (String option : options) {
+            $$(checkboxSelector).find(value(option)).parent().click();
+        }
         return this;
     }
 }
