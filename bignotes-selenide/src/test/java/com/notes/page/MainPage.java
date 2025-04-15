@@ -30,10 +30,6 @@ public class MainPage extends BasePage<MainPage> {
     private final By articleTitleLocator = By.className("articlePreview__title");
     private final By articleTextLocator = By.className("articlePreview__text");
 
-    public StaticsPage navigateToStatisticsPage() {
-        return navigationComponent.navigateToStatisticsPage();
-    }
-
     public MainPage scrollNotesContent() {
         executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight;", notesContent);
         return this;

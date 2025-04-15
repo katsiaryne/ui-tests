@@ -54,8 +54,6 @@ public class TestAddProductToCart extends BaseTest {
         checkCart(cartPage, productPrice, CART_ITEM_SIZE_1, productName, ITEM_QUANTITY_1);
     }
 
-
-
     @DisplayName("Добавление продукта с некорректным количеством (0)")
     @Test
     public void addProductWithWrongQuantity() {

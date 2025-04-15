@@ -1,9 +1,12 @@
 package com.notes.page.base;
 
 import com.codeborne.selenide.SelenideElement;
+import com.notes.page.NotePage;
+import com.notes.page.StaticsPage;
 import com.notes.page.components.Navigation;
 import lombok.Getter;
 
+import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.editable;
 
 @Getter
@@ -14,9 +17,25 @@ public abstract class BasePage<T extends BasePage<T>> {
         this.navigationComponent = new Navigation();
     }
 
+    public StaticsPage navigateToStatisticsPage() {
+        return navigationComponent.navigateToStatisticsPage();
+    }
+
     protected T setField(SelenideElement element, String value) {
         element.shouldBe(editable).click();
         element.sendKeys(value);
+        return (T) this;
+    }
+
+    protected T clearFieldAndSetText(SelenideElement element, String text) {
+        element.shouldBe(editable).click();
+        element.clear();
+        element.sendKeys(text);
+        return (T) this;
+    }
+
+    protected T clickButton(SelenideElement button) {
+        button.shouldBe(clickable).click();
         return (T) this;
     }
 }
