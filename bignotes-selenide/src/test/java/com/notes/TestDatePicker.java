@@ -19,8 +19,8 @@ public class TestDatePicker extends BaseTest {
                 .navigateToStatisticsPage()
                 .setDate(day, month, year);
         SoftAssertions.assertSoftly(softAssertions -> {
-            assertThat(page.getPageStatisticDate().getText()).isEqualTo(date);
-            assertThat(page.getCalendarMonthYear().getText()).isEqualTo(monthAndYear);
+            softAssertions.assertThat(page.getPageStatisticDate().getText()).isEqualTo(date);
+            softAssertions.assertThat(page.getCalendarMonthYear().getText()).isEqualTo(monthAndYear);
         });
     }
 }

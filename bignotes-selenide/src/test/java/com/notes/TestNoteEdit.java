@@ -21,8 +21,8 @@ public class TestNoteEdit extends BaseTest {
                 .saveChanges()
                 .navigateToStatisticsPage();
         SoftAssertions.assertSoftly(softAssertions -> {
-            assertThat(page.getNoteTitle(1).getText()).isEqualTo(expectedTitle);
-            assertThat(page.getNoteText(1).getText()).isEqualTo(text);
+            softAssertions.assertThat(page.getNoteTitle(1).getText()).isEqualTo(expectedTitle);
+            softAssertions.assertThat(page.getNoteText(1).getText()).isEqualTo(text);
         });
     }
 }
