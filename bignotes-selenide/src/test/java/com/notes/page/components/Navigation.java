@@ -5,7 +5,6 @@ import com.notes.page.MainPage;
 import com.notes.page.StaticsPage;
 import lombok.Getter;
 
-import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Selenide.$x;
 
 @Getter
@@ -14,12 +13,12 @@ public class Navigation {
     private final SelenideElement statsPageButton = $x("//div[@class='theLayout__menuBody']//a[2]");
 
     public StaticsPage navigateToStatisticsPage() {
-        statsPageButton.shouldBe(clickable).click();
+        statsPageButton.click();
         return new StaticsPage();
     }
 
     public MainPage navigateToMainPage() {
-        mainPageButton.shouldBe(clickable).click();
+        mainPageButton.click();
         return new MainPage();
     }
 }
