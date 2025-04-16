@@ -1,30 +1,26 @@
 package com.notes;
 
+import com.notes.dataprovider.DatePickerDataProvider;
 import com.notes.page.MainPage;
 import com.notes.page.StaticsPage;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.assertj.core.api.SoftAssertions;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestDatePicker extends BaseTest {
-    @DisplayName("Проверка установки даты")
-    @ParameterizedTest
-    @CsvSource(value = {
-            "11, 11, 2024, '11 декабря 2024', 'Декабрь 2024'",
-            "1, 1, 2025, '1 февраля 2025', 'Февраль 2025'"
-    })
+    @Test(description = "Проверка установки даты",
+            dataProviderClass = DatePickerDataProvider.class,
+            dataProvider = "dates")
+    @Parameters
     public void testSetDatePicker(String day, String month, String year, String date, String monthAndYear) {
         StaticsPage page = new MainPage()
                 .navigateToStatisticsPage()
                 .setDate(day, month, year);
-        assertAll(
-                "Проверка изменения элементов страницы с изменением даты",
-                () -> page.getPageStatisticDate().shouldBe(visible).shouldHave(text(date)),
-                () -> page.getCalendarMonthYear().shouldBe(visible).shouldHave(text(monthAndYear))
-        );
+        SoftAssertions.assertSoftly(softAssertions -> {
+            assertThat(page.getPageStatisticDate().getText()).isEqualTo(date);
+            assertThat(page.getCalendarMonthYear().getText()).isEqualTo(monthAndYear);
+        });
     }
 }

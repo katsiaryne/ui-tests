@@ -1,19 +1,15 @@
 package com.notes;
 
+import com.notes.dataprovider.NoteDataProvider;
 import com.notes.page.MainPage;
 import com.notes.page.StaticsPage;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import org.assertj.core.api.SoftAssertions;
+import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TestNoteEdit extends BaseTest {
-    @ParameterizedTest
-    @CsvSource(value = {
-            "'new title', 'new text', 'new title'",
-            "'', 'new text', '(Без темы)'"
-    })
+    @Test(dataProviderClass = NoteDataProvider.class, dataProvider = "note")
     public void testCreateNoteAndEdit(String title, String text, String expectedTitle) {
         StaticsPage page = new MainPage()
                 .createNotes(1)
@@ -24,10 +20,9 @@ public class TestNoteEdit extends BaseTest {
                 .cleatTextAndSetText(text)
                 .saveChanges()
                 .navigateToStatisticsPage();
-        assertAll(
-                "Проверка обновления записи на странице статистики",
-                () -> assertEquals(expectedTitle, page.getNoteTitle(1).getText()),
-                () -> assertEquals(text, page.getNoteText(1).getText())
-        );
+        SoftAssertions.assertSoftly(softAssertions -> {
+            assertThat(page.getNoteTitle(1).getText()).isEqualTo(expectedTitle);
+            assertThat(page.getNoteText(1).getText()).isEqualTo(text);
+        });
     }
 }
