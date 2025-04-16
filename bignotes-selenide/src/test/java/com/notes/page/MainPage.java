@@ -6,13 +6,12 @@ import com.notes.page.base.BasePage;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byClassName;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.notes.util.PageConstant.DEFAULT_NOTE_TEXT;
@@ -25,10 +24,10 @@ public class MainPage extends BasePage<MainPage> {
     private final SelenideElement submitNoteButton = $(".pageCreate__baseButton");
     private final SelenideElement pageCreateNoteButton = $(".pageCreate__baseButtonAdd");
     private final SelenideElement notesContent = $(".vb-content");
-    private final ElementsCollection articles = $$(By.xpath("//div[@class='articlePreview pageCreate__articlePreview']"));
-    public final By deleteNoteLocator = By.xpath("//button[@class='articlePreview__button'][2]");
-    private final By articleTitleLocator = By.className("articlePreview__title");
-    private final By articleTextLocator = By.className("articlePreview__text");
+    private final ElementsCollection articles = $$x("//div[@class='articlePreview pageCreate__articlePreview']");
+    public final By deleteNoteLocator = byXpath(".//button[@class='articlePreview__button'][2]");
+    private final By articleTitleLocator = byClassName("articlePreview__title");
+    private final By articleTextLocator = byClassName("articlePreview__text");
 
     public MainPage scrollNotesContent() {
         executeJavaScript("arguments[0].scrollTop = arguments[0].scrollHeight;", notesContent);
@@ -36,14 +35,13 @@ public class MainPage extends BasePage<MainPage> {
     }
 
     public PageCreate openCreatePage() {
-        pageCreateNoteButton.shouldBe(clickable).click();
+        pageCreateNoteButton.click();
         return new PageCreate();
     }
 
     public MainPage deleteFirstArticle() {
-        actions().moveToElement(getFirstArticle())
-                .moveToElement(getFirstArticle().findElement(deleteNoteLocator))
-                .pause(Duration.ofMillis(200))
+        actions().moveToElement(getFirstArticle()).perform();
+        actions().moveToElement(getFirstArticle().find(deleteNoteLocator).shouldBe(visible))
                 .click()
                 .perform();
         return this;
@@ -79,7 +77,6 @@ public class MainPage extends BasePage<MainPage> {
     }
 
     public MainPage submitNote() {
-        submitNoteButton.shouldBe(clickable).click();
-        return this;
+        return clickButton(submitNoteButton);
     }
 }

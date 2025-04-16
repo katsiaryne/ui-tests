@@ -3,8 +3,8 @@ package com.notes.page;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
 
-import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.editable;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 @Getter
@@ -14,7 +14,7 @@ public class PageCreate {
     private final SelenideElement submitNoteButton = $(".popup__baseButton");
 
     public MainPage submitNote() {
-        submitNoteButton.shouldBe(clickable).click();
+        submitNoteButton.shouldBe(visible).click();
         return new MainPage();
     }
 
