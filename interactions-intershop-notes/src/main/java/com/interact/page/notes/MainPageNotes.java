@@ -25,9 +25,16 @@ public class MainPageNotes extends BasePageNote<MainPageNotes> {
     private List<WebElement> listOfVisibleNotes;
     private final By firstNoteLocator = By.xpath("//div[@class='articlePreview pageCreate__articlePreview'][1]");
     private final By firstNoteDeleteButton = By.xpath("//button[@class='articlePreview__button'][2]");
+    @FindBy(xpath = "//a[contains(text(),'Статистика')]")
+    private WebElement statsButton;
 
     public MainPageNotes() {
         driver.get(URL_NOTE);
+    }
+
+    public StatisticsPage openStats() {
+        statsButton.click();
+        return new StatisticsPage();
     }
 
     public MainPageNotes addNewNote(String title, String info) {
