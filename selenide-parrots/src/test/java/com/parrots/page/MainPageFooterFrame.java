@@ -4,19 +4,19 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.parrots.page.base.BaseMainPage;
 import lombok.Getter;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.clickable;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byLinkText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 @Getter
 public class MainPageFooterFrame extends BaseMainPage<MainPageFooterFrame> {
     private final ElementsCollection socialLinks = $$(".socialLinks a");
-    private final SelenideElement officialSiteLink = $(By.linkText("https://skillbox.ru/"));
+    private final SelenideElement officialSiteLink = $(byLinkText("https://skillbox.ru/"));
 
     public MainPageFooterFrame openOfficialSite() {
-        officialSiteLink.should(clickable).click();
+        officialSiteLink.should(visible).click();
         return this;
     }
 

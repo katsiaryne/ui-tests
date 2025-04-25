@@ -3,17 +3,17 @@ package com.parrots.page;
 import com.codeborne.selenide.SelenideElement;
 import com.parrots.page.base.BaseMainPage;
 import lombok.Getter;
-import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.clickable;
 import static com.codeborne.selenide.Condition.interactable;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byName;
 import static com.codeborne.selenide.Selenide.$;
 
 @Getter
 public class MainPageContentFrame extends BaseMainPage<MainPageContentFrame> {
     private final SelenideElement submitButton = $("#sendMe");
     private final SelenideElement genderRadioButtons = $(".parrot input");
-    private final SelenideElement emailField = $(By.name("email"));
+    private final SelenideElement emailField = $(byName("email"));
     private final SelenideElement formError = $(".form-error");
     private final SelenideElement resultText = $(".result-text");
     private final SelenideElement resultEmail = $("#resultTextBlock pre");
@@ -22,13 +22,13 @@ public class MainPageContentFrame extends BaseMainPage<MainPageContentFrame> {
     private final SelenideElement form = $(".main-form");
 
     public MainPageContentFrame setEmail(String email) {
-        emailField.should(clickable).click();
+        emailField.should(visible).click();
         emailField.should(interactable).sendKeys(email);
         return this;
     }
 
     public MainPageContentFrame submitForm() {
-        submitButton.should(clickable).click();
+        submitButton.should(visible).click();
         return this;
     }
 
@@ -38,7 +38,7 @@ public class MainPageContentFrame extends BaseMainPage<MainPageContentFrame> {
     }
 
     public MainPageContentFrame clickTryAnotherEmail() {
-        anotherEmailButton.should(clickable).click();
+        anotherEmailButton.should(visible).click();
         return this;
     }
 }

@@ -5,11 +5,12 @@ import com.parrots.page.MainPageContentFrame;
 import com.parrots.page.MainPageFooterFrame;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.byTagName;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public abstract class BaseMainPage<T extends BaseMainPage<T>> {
-    private final By frameLocator = By.tagName("iframe");
+    private final By frameLocator = byTagName("iframe");
 
     public MainPage switchToMainFrame() {
         switchTo().defaultContent();
