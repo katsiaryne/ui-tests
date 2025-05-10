@@ -13,4 +13,10 @@ public abstract class TabActionUtils {
         Object[] windowHandles = webDriver.getWindowHandles().toArray();
         webDriver.switchTo().window((String) windowHandles[tab]);
     }
+
+    public static void acceptInfoAlertAndSwitchToWindow(WebDriver webDriver) {
+        webDriver.switchTo().alert().accept();
+        Object[] windowHandles = webDriver.getWindowHandles().toArray();
+        webDriver.switchTo().window((String) windowHandles[0]);
+    }
 }

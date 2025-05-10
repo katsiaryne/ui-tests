@@ -1,7 +1,9 @@
 package com.pizzeria.page;
 
+import com.pizzeria.model.UserCheckoutDetails;
 import com.pizzeria.page.base.BasePage;
 import lombok.Getter;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,14 +31,67 @@ public class CheckoutPage extends BasePage<CheckoutPage> {
     private WebElement orderDateCalendar;
     @FindBy(xpath = "//input[@id='payment_method_cod']")
     private WebElement paymentMethodCacheButton;
-    @FindBy(xpath = "input[@id='terms']")
+    @FindBy(xpath = "//input[@id='payment_method_bacs']")
+    private WebElement paymentMethodCardButton;
+    @FindBy(id = "terms")
     private WebElement acceptTermsButton;
     @FindBy(id = "place_order")
     private WebElement submitOrderButton;
+    @FindBy(xpath = "//span[@id='select2-billing_country-container']")
+    private WebElement countrySelector;
+    @FindBy(xpath = "//input[@role='combobox']")
+    private WebElement searchCountry;
+    @FindBy(id = "billing_phone")
+    private WebElement phoneField;
+    @FindBy(id = "billing_email")
+    private WebElement emailField;
 
-    public CheckoutPage setDeliveryDate(String day, String month, String year) {
+    public CheckoutPage setDeliveryDate(String date) {
         orderDateCalendar.click();
-        orderDateCalendar.sendKeys(day, month, year);
+        orderDateCalendar.sendKeys(date);
+        return this;
+    }
+
+    public OrderReceivedPage submitCheckout() {
+        submitOrderButton.click();
+        return new OrderReceivedPage();
+    }
+
+    public CheckoutPage setPaymentTypeByCash() {
+        paymentMethodCacheButton.click();
+        return this;
+    }
+
+    public CheckoutPage setPaymentTpeByCard() {
+        paymentMethodCardButton.click();
+        return this;
+    }
+
+    public CheckoutPage acceptTerms() {
+        acceptTermsButton.click();
+        return this;
+    }
+
+    public CheckoutPage setOrderDetails(UserCheckoutDetails details) {
+        firstNameField.clear();
+        firstNameField.sendKeys(details.getName());
+        lastNameField.clear();
+        lastNameField.sendKeys(details.getSurname());
+        addressField.clear();
+        addressField.sendKeys(details.getAddress());
+        cityField.clear();
+        cityField.sendKeys(details.getCity());
+        cityStateField.clear();
+        cityStateField.sendKeys(details.getRegion());
+        postcodeField.clear();
+        postcodeField.sendKeys(details.getPostcode());
+        countrySelector.click();
+        searchCountry.click();
+        searchCountry.sendKeys(details.getCountry(), Keys.ENTER);
+        phoneField.clear();
+        phoneField.sendKeys(details.getPhone());
+        emailField.clear();
+        emailField.sendKeys(details.getEmail());
         return this;
     }
 }

@@ -1,6 +1,8 @@
 package com.pizzeria.page.component;
 
+import com.pizzeria.page.BonusProgramPage;
 import com.pizzeria.page.CartPage;
+import com.pizzeria.page.LoginPage;
 import com.pizzeria.page.MenuPage;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -91,6 +93,16 @@ public class Header {
     public MenuPage openMenuPage() {
         menuButton.click();
         return new MenuPage();
+    }
+
+    public LoginPage openLoginPage() {
+        loginButton.click();
+        return new LoginPage();
+    }
+
+    public BonusProgramPage openBonusPage() {
+        bonusProgramButton.click();
+        return new BonusProgramPage();
     }
 
     public MenuPage openMenuPage(String categoryName) {

@@ -89,6 +89,11 @@ public class CartPage extends BasePage<CartPage> {
                 .orElseThrow();
     }
 
+    public CheckoutPage proceedToCheckout() {
+        checkoutButton.click();
+        return new CheckoutPage();
+    }
+
     public int getCartItemSize() {
         refreshCartItemsList();
         return cartItemsList.size();

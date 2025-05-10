@@ -1,5 +1,7 @@
 package com.pizzeria.util;
 
+import com.pizzeria.model.UserCheckoutDetails;
+
 public final class TestValues {
     public static final String PIZZA_TITLE_CART = "Пицца \"Рай\"";
     public static final String PIZZA_TITLE_UPPERCASE = "ПИЦЦА «РАЙ»";
@@ -13,9 +15,27 @@ public final class TestValues {
     public static final String DESERT_TITLE_CART = "Десерт \"Булочка с корицей\"";
     public static final String DESERT_TITLE_MENU = "Десерт «Булочка с корицей»";
     public static final String CATEGORY_DRINKS = "Напитки";
+    public static final String CATEGORY_DESERTS_UPPERCASE = "ДЕСЕРТЫ";
     public static final String DRINK_TITLE_MENU = "Айс латте";
     public static final String VALID_COUPON = "GIVEMEHALYAVA";
     public static final String SUCCESS_COUPON_MESSAGE = "Coupon code applied successfully.";
     public static final String RETURN_PRODUCT_IN_CART_MESSAGE = "“%s” удален. Вернуть?";
     public static final String EMPTY_CART_MESSAGE = "Корзина пуста.";
+    public static final String PAYMENT_METHOD_BY_CACHE = "Оплата при доставке";
+    public static final String PAYMENT_METHOD_BY_CARD = "Прямой банковский перевод";
+    public static final String ORDER_STATUS_ORDER_RECEIVED = "ЗАКАЗ ПОЛУЧЕН";
+    public static final String EMAIL = "test@test.test";
+    public static final String PHONE_NUMBER = "78999999999";
+    public static final UserCheckoutDetails DEFAULT_USER =
+            UserCheckoutDetails.builder()
+                    .name("Name")
+                    .surname("Surname")
+                    .country("Russia")
+                    .address("Address")
+                    .city("City")
+                    .region("Region")
+                    .postcode("210000")
+                    .email(EMAIL)
+                    .phone(PHONE_NUMBER)
+                    .build();
 }
