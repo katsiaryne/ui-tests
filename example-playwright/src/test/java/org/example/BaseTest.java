@@ -16,7 +16,7 @@ import static org.example.config.ConfigProvider.URL;
 
 //https://playwright.dev/java/docs/trace-viewer-intro
 //mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="show-trace trace.zip"
-public abstract class BasePage {
+public abstract class BaseTest {
     private Playwright playwright;
     private Browser browser;
     protected Page page;

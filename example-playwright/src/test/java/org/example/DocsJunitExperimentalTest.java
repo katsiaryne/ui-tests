@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 
+//Автоматическая настройка
 //https://playwright.dev/java/docs/junit
 @UsePlaywright
 public class DocsJunitExperimentalTest {

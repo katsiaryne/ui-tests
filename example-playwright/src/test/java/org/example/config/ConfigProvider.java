@@ -13,4 +13,6 @@ public interface ConfigProvider {
     }
 
     String URL = readConfig().getString("url");
+    String API_URL = readConfig().getString("api_url");
+    String API_KEY = readConfig().getString("api_key");
 }

@@ -8,6 +8,7 @@ import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.AriaRole;
 import org.junit.jupiter.api.Test;
 
+//Кодогенерация ui-тестов
 //https://playwright.dev/java/docs/codegen-intro
 //mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="codegen demo.playwright.dev/todomvc"
 public class DocsCodeGenTest {
